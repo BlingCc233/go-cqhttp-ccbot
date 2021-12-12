@@ -4,8 +4,9 @@ import requests
 import re
 import random
 
-'下面这个函数用来判断信息开头的几个字是否为关键词'
-'如果是关键词则触发对应功能，群号默认为空'
+#状态 1为自动回复 0为关键词模式 默认为0
+status = 0
+
 def keyword_pr(message, uid):
     if message[0:1] == '火': 
         xuhuo(uid)
@@ -17,11 +18,16 @@ def keyword_pr(message, uid):
         help(uid,None)
     if message[0:9] == '/feedback':
         feedback(message,uid,None)
+    if message[0:7] == '/status':
+        set_status(message,uid)
+    if status == 1:
+        if uid != 0:
+            ignore(uid)
      
 #违禁词
 bans = ['妈卖批','科学上网', '傻逼' , '艹', '卧槽' ,'woc']
 #管理群
-groups = [877201026]
+groups = [697904286,701436956,877201026]
 
 def keyword_gr(message, drawback_msg, uid, gid):
     if message == '/help':
@@ -29,7 +35,7 @@ def keyword_gr(message, drawback_msg, uid, gid):
     if message[0:2] == '复读':
         fudu_gr(message,uid,gid)
     if message[0:9] == '/feedback':
-        feedback(message,uid,gid)
+        feedback(message,uid,None)
     if gid in groups:
         for ban in bans:
             if ban in message:
@@ -65,6 +71,19 @@ def drawback(msg_id,uid,gid):
     requests.get(url=uurl+'/delete_msg?message_id={0}'.format(msg_id))
     requests.get(url=uurl+'/send_group_msg?group_id={0}&message={1}'.format(gid,r'[CQ:at,' r'qq=' + str(uid) + r']' + '已撤回违禁词。\n学习社会主义核心价值观：' + msg[rand]))
     
+def set_status(message,uid):
+    getnum = message[8:9]
+    statu = int(getnum)
+    global status
+    status = statu
+    requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid,'已设置为状态 ' + str(statu)))
+    
+    
+def ignore(uid):
+    msg = 'Cc不在，我是机器人，你可以更改status码来调教我'
+    requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid, msg))
+    
+    
 def feedback(message,uid,gid):
     f = open("feedback.txt","a")
     f.write(message[9: ] + '\n \n')
@@ -73,5 +92,3 @@ def feedback(message,uid,gid):
         requests.get(url=uurl+'/send_group_msg?group_id={0}&message={1}'.format(gid,r'[CQ:at,' r'qq=' + str(uid) + r']' + '已反馈。'))
     else:
         requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid,"已反馈。"))
-    
-    
