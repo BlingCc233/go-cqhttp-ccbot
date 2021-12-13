@@ -6,4 +6,4 @@
 - 先运行/gohttp目录下的./go-cqhttp
 - 再运行/bot目录下的main.py
 ## 功能
-- 参考/bot/api.py的注释
+- 参考<a href="https://github.com/BlingCc233/go-cqhttp-ccbot/blob/main/bot/api.py">/bot/api.py</a>的注释
