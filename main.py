@@ -12,26 +12,25 @@ def post_data():
 	
 	
 	if _get('msg_tp')=='private': # 如果是私聊信息		
-		uid = _get('uid') # 获取信息发送者的QQ号码
+		uid = _get('uuid') # 获取信息发送者的QQ号码
 		message = _get('msg')# 获取原始信息
 		api.keyword_pr(message, uid) # 将 Q号和原始信息传到我们的后台
 		
 		
 	if _get('msg_tp')=='group':# 如果是群聊信息
 		gid = _get('gid') # 获取群号
-		uid = _get('uid') # 获取信息发送者的QQ号码
+		uuid = _get('uuid') # 获取信息发送者的QQ号码
 		message = _get('msg') # 获取原始信息
 		msgid = _get('msgid') #获取撤回消息id
-		api.keyword_gr(message, msgid, uid, gid) # 将Q号和原始信息传到我们的后台
+		api.keyword_gr(message, msgid, uuid, gid) # 将Q号和原始信息传到我们的后台
 		
 	if _get('ntc_tp')=='group_recall':#群撤回
 		gid = _get('gid')
-		uid = _get('uid') # 获取信息发送者的QQ号码
+		guid = _get('guid') # 获取信息发送者的QQ号码
 		opid = _get('opid') #获取操作者ID
-		if opid == uid:
+		if opid == guid:
 			msgid = _get('msgid')
-			msg = _get('msg')
-			api.anti_recall(msgid ,uid ,gid,None)
+			api.anti_recall(msgid ,guid ,gid,None)
 	
 	if _get('ntc_tp')=='friend_recall':#好友撤回
 		uid = request.get_json().get('user_id')
@@ -46,8 +45,10 @@ def _get(type):
 		return request.get_json().get('notice_type')
 	if type == 'msg_tp':
 		return request.get_json().get('message_type')
-	if type == 'uid':
+	if type == 'uuid':
 		return request.get_json().get('sender').get('user_id')
+	if type == 'guid':
+		return request.get_json().get('user_id')
 	if type == 'gid':
 		return request.get_json().get('group_id')
 	if type == 'opid':

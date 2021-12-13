@@ -1,5 +1,6 @@
 import json
 import requests
+from flask import request
 import re
 import random
 
@@ -34,7 +35,7 @@ def keyword_gr(message, drawback_msg, uid, gid):
     if message[0:2] == '复读':
         fudu_gr(message,uid,gid)
     if message[0:9] == '/feedback':
-        feedback(message,uid,None)
+        feedback(message,uid,gid)
     if gid in groups:
         for ban in bans:
             if ban in message:
@@ -59,7 +60,7 @@ def fudu_pr(message,uid):
 
 #去他妈的“在”
 def hello(uid):
-    for num in range(1,10) :
+    for num in range(1,3) :
         requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid,r'[CQ:face,id=181]'))
 
 #菜单？    
@@ -103,8 +104,10 @@ def feedback(message,uid,gid):
         
 #防撤回
 def anti_recall(msgid, uid ,gid ,stid):
-	msg = requests.post(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
+	msg = requests.get(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
+	msg1 = json.loads(msg.text)
+	msg2 = msg1.get("data").get("message")
 	if gid != None:
-		requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + ' 撤回无效：\n' + str(msg)))
+		requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + ' 撤回无效：\n' + str(msg2)))
 	else:
-		requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(stid ,str(uid) + '\n' + str(msg)))
+		requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(stid ,str(uid) + '\n' + str(msg2)))
