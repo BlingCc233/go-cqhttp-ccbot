@@ -61,5 +61,5 @@ def _get(type):
 	
 
 if __name__ == '__main__':
-	app.run(debug=True, host='127.0.0.1', port=12334)# 此处的host和port对应 yml文件的设置
+	app.run(debug=True, host='127.0.0.1', port=22334)# 此处的host和port对应 yml文件的设置
 
