@@ -1,5 +1,4 @@
 import json
-
 import requests
 import re
 import random
@@ -8,6 +7,8 @@ import random
 status = 0
 
 def keyword_pr(message, uid):
+    if message[0:7] == '/status':
+        set_status(message,uid)
     if status == 0:
         if message[0:1] == '火': 
             xuhuo(uid)
@@ -19,11 +20,7 @@ def keyword_pr(message, uid):
             help(uid,None)
         if message[0:9] == '/feedback':
             feedback(message,uid,None)
-        if message[0:7] == '/status':
-            set_status(message,uid)
     if status == 1:
-        if message[0:7] == '/status':
-            set_status(message,uid)
         ignore(uid)
      
 #违禁词
@@ -62,7 +59,7 @@ def fudu_pr(message,uid):
 
 #去他妈的“在”
 def hello(uid):
-    for 1 in 10 :
+    for num in range(1,10) :
         requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid,r'[CQ:face,id=181]'))
 
 #菜单？    
@@ -103,3 +100,11 @@ def feedback(message,uid,gid):
         requests.get(url=uurl+'/send_group_msg?group_id={0}&message={1}'.format(gid,r'[CQ:at,' r'qq=' + str(uid) + r']' + '已反馈。'))
     else:
         requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid,"已反馈。"))
+        
+#防撤回
+def anti_recall(msgid, uid ,gid ,stid):
+	msg = requests.post(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
+	if gid != None:
+		requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + ' 撤回无效：\n' + str(msg)))
+	else:
+		requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(stid ,str(uid) + '\n' + str(msg)))
