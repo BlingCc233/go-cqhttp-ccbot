@@ -8,7 +8,9 @@
 - 再运行/bot目录下的main.py
 ## 功能
 - 参考<a href="https://github.com/BlingCc233/go-cqhttp-ccbot/blob/main/bot/api.py">/bot/api.py</a>的注释
-- | 功能 | 调用方法 |
+| 功能                      | 说明             |
+| ------------------------- | --------------- |
+| 防撤回                     | /anti_recall 0/1开关功能|
 ## 涩图
 - 因为传入API不同，返回的json内容有异。如果更改了API建议取消api.def setu()里的注释
 - <a href="https://api.lolicon.app/#/">涩图API调用方法</a>
