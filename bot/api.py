@@ -1,3 +1,5 @@
+__author__ = 'BlingCc'
+
 import json
 import requests
 from flask import request
@@ -78,7 +80,14 @@ def hello(uid):
 
 #菜单？    
 def help(uid,gid):
-    msg = '我是Cc的开源机器人，暂时冇有任何功能：\n1.私聊"在？"可以续火\n2.在特定群可以当管理并撤回违禁词\n3.发送"复读XXX"可以复读\n4.不论是群聊还是私聊，你撤回的我都能看见(管理员撤回的不算)\n5.发送"/feedback XXX"可以反馈bug，我会尽早修复\n6.发送"/opensource"可以查看源码\n7.发送"/setu"可以获取嘿嘿嘿'
+    msg = '我是Cc的开源机器人，暂时冇有任何功能：\n'
+    msg += '1.私聊"在？"可以续火\n'
+    msg += '2.在特定群可以当管理并撤回违禁词\n'
+    msg += '3.发送"复读XXX"可以复读\n'
+    msg += '4.不论是群聊还是私聊，你撤回的我都能看见(管理员撤回的不算)\n'
+    msg += '5.发送"/feedback XXX"可以反馈bug，我会尽早修复\n'
+    msg += '6.发送"/opensource"可以查看源码\n'
+    msg += '7.发送"/setu"可以获取嘿嘿嘿'
     if gid != None:
         requests.get(url=uurl+'/send_group_msg?group_id={0}&message={1}'.format(gid,msg))
     else:
@@ -133,21 +142,22 @@ def anti_recall(msgid, uid ,gid ,stid):
 		
 #色图
 def setu(gid,uid):
-	menu = requests.get('https://api.lolicon.app/setu/v2')
-	menu1 = json.loads(menu.text)
-	menu3 = list(str(menu1))
-	menu4 = menu3[::-1]
-	menu5 = []
-	i = 5
-	while menu4[i] != "'":
-		menu5.append(menu4[i])
-		i+=1
-	menu6 = menu5[::-1]
-	menu2 = ""
-	for o in menu6:
-		menu2 += str(o)
+	menu = requests.get('https://api.lolicon.app/setu/v2?r18=1&size=regular')
+	menu2 = menu.json()['data'][0]['urls']['regular']
+	#menu1 = json.loads(menu.text)
+	#menu3 = list(str(menu1))
+	#menu4 = menu3[::-1]
+	#menu5 = []
+	#i = 5
+	#while menu4[i] != "'":
+		#menu5.append(menu4[i])
+		#i+=1
+	#menu6 = menu5[::-1]
+	#menu2 = ""
+	#for o in menu6:
+		#menu2 += str(o)
 	if gid != None:
 		requests.get(url=uurl + '/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:image,' + r'file=' + str(menu2) + r']'))
 	else:
 		requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid,  r'[CQ:image,' + r'file=' + str(menu2) + r']'))
-		#requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid,  str(menu2) ))
+		
