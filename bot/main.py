@@ -1,3 +1,5 @@
+__author__ = 'BlingCc'
+
 from flask import Flask, request
 
 import api
@@ -34,7 +36,7 @@ def post_data():
 	
 	if _get('ntc_tp')=='friend_recall':#好友撤回
 		uid = request.get_json().get('user_id')
-		stid = 2415364721
+		stid = 1342171891
 		msgid = _get('msgid')
 		api.anti_recall(msgid ,uid, None, stid)
     	
