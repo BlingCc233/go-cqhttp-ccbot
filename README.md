@@ -20,7 +20,7 @@
 
 ## 未实现的功能
 - [ ] 狼人杀🐺
-
+- [ ] QRcode二维码生成
 ## 涩图
 - 因为传入API不同，返回的json内容有异。如果更改了API建议取消api.def setu()里的注释
 - <a href="https://api.lolicon.app/#/">涩图API调用方法</a>
