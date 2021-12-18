@@ -10,6 +10,8 @@ import random
 status = 0
 #防撤回 1为开启
 anti_status = 1
+#超级管理员账号，请修改为自己的
+superid = 1342171891
 
 def keyword_pr(message, uid):
 	if message[0:7] == '/status' or message[0:12] == '/anti_recall':
@@ -32,7 +34,7 @@ def keyword_pr(message, uid):
      
 #违禁词
 bans = ['妈卖批','科学上网', '傻逼' , '艹', '卧槽' ,'woc','翻墙']
-#管理群
+#管理群,请添加自己的
 groups = [697904286,701436956,877201026]
 
 def keyword_gr(message, drawback_msg, uid, gid):
@@ -100,6 +102,8 @@ def drawback(msg_id,uid,gid):
  
 #状态设置       
 def set_status(message,uid):
+	if uid != superid:
+		return
 	if message[0:7] == '/status':
 		statu = int(message[8:9])
 		global status

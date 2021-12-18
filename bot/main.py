@@ -9,8 +9,10 @@ app = Flask(__name__)
 '''监听端口获取QQ信息'''
 @app.route('/', methods=["POST"])
 
+superid = 1342171891#超级管理员，请修改为自己的
+
+
 def post_data():
-	'下面的request.get_json().get......是用来获取关键字的值用的，关键字参考上面代码段的数据格式'
 	
 	
 	if _get('msg_tp')=='private': # 如果是私聊信息		
@@ -36,7 +38,7 @@ def post_data():
 	
 	if _get('ntc_tp')=='friend_recall':#好友撤回
 		uid = request.get_json().get('user_id')
-		stid = 1342171891
+		stid = superid
 		msgid = _get('msgid')
 		api.anti_recall(msgid ,uid, None, stid)
     	
