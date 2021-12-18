@@ -1,5 +1,7 @@
 # go-cqhttp-ccbot
 > 🤖一个基于<a href="https://github.com/Mrs4s/go-cqhttp/releases">go-cqhttp</a>和Python的开箱即用的机器人
+## 声明
+- 一切开发旨在学习，请勿用于非法用途
 ## 启动
 - 使用时仅需修改<a href="https://github.com/BlingCc233/go-cqhttp-ccbot/blob/main/go-cqhttp/config.yml">/go-cqhttp/config.yml</a>中的账号密码，以及`/bot/main.py`与`/bot/api.py`中的高级管理员账号(请自行参考注释)
 - 也可按需修改<a href="https://github.com/BlingCc233/go-cqhttp-ccbot/blob/main/bot/api.py">/bot/api.py</a>中的管理群，违禁词，欢迎语，<a href="#涩图">涩图API</a>等。（不改也能直接使用）
