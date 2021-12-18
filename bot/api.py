@@ -53,7 +53,7 @@ def keyword_gr(message, drawback_msg, uid, gid):
 
 
 #上报地址
-uurl = 'http://127.0.0.1:12333'
+uurl = 'http://127.0.0.1:22333'
 
 #功能
 #源码
