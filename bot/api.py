@@ -53,7 +53,7 @@ def keyword_gr(message, drawback_msg, uid, gid):
 
 
 #上报地址
-uurl = 'http://127.0.0.1:22333'
+uurl = 'http://127.0.0.1:12333'
 
 #功能
 #源码
@@ -140,7 +140,7 @@ def anti_recall(msgid, uid ,gid ,stid):
 		
 #色图
 def setu(message,gid,uid):
-	menu = requests.get('https://api.lolicon.app/setu/v2')
+	menu = requests.get('https://api.lolicon.app/setu/v2'+str(message[6:]))
 	#menu2 = menu.json()['data'][0]['urls']['regular']
 	menu1 = json.loads(menu.text)
 	menu3 = list(str(menu1))
@@ -155,7 +155,7 @@ def setu(message,gid,uid):
 	for o in menu6:
 		menu2 += str(o)
 	if gid != None:
-		requests.get(url=uurl + '/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:image,' + r'file=' + str(menu2) + str(message[6:]) + r']'))
+		requests.get(url=uurl + '/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:image,' + r'file=' + str(menu2)+ r']'))
 	else:
-		requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid,  r'[CQ:image,' + r'file=' + str(menu2) + str(message[6:]) + r']'))
+		requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid,  r'[CQ:image,' + r'file=' + str(menu2) + r']'))
 		
