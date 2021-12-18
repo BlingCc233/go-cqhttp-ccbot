@@ -11,7 +11,7 @@ status = 0
 #防撤回 1为开启
 anti_status = 1
 #超级管理员账号，请修改为自己的
-superid = 1342171891
+superid = 2415364721
 
 def keyword_pr(message, uid):
 	if message[0:7] == '/status' or message[0:12] == '/anti_recall':
@@ -33,7 +33,14 @@ def keyword_pr(message, uid):
 		ignore(uid)
      
 #违禁词
-bans = ['妈卖批','科学上网', '傻逼' , '艹', '卧槽' ,'woc','翻墙']
+file = open("mingan_words.txt","r")
+bans = []
+line = file.readline()
+while line :
+	line=line.replace('\n','')
+	b = str(line)
+	bans.append(b)
+	line = file.readline()
 #管理群,请添加自己的
 groups = [697904286,701436956,877201026]
 
