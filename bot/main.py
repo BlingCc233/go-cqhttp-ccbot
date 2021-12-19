@@ -9,11 +9,11 @@ app = Flask(__name__)
 '''监听端口获取QQ信息'''
 @app.route('/', methods=["POST"])
 
-superid = 1342171891#超级管理员，请修改为自己的
 
 
 def post_data():
-	
+	superid = 1342171891#超级管理员，请修改为自己的
+
 	
 	if _get('msg_tp')=='private': # 如果是私聊信息		
 		uid = _get('uuid') # 获取信息发送者的QQ号码
