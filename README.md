@@ -5,6 +5,7 @@
     <img src="https://img.shields.io/github/v/release/BlingCc233/go-cqhttp-ccbot?color=blueviolet&include_prereleases" alt="release">
   </a>
 </p>
+
 ## 声明
 - 一切开发旨在学习，请勿用于非法用途
 ## 启动
