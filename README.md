@@ -33,6 +33,7 @@
 - [ ] QRcode二维码生成
 - [ ] 识别群图片二维码，并撤回
 - [ ] 进群验证
+- [ ] 超级管理员指定对象发送信息
 ## 涩图
 - 使用`/setu ?`自定义涩图类型，for instance:`/setu ?r18=1`
 - <a href="https://api.lolicon.app/#/">参考涩图API调用方法</a>
