@@ -28,7 +28,9 @@ def keyword_pr(message, uid):
 		if message[0:9] == '/feedback':
 			feedback(message,uid,None)
 		if message[0:5] == '/setu':
-			setu(message,None,uid)     
+			setu(message,None,uid)   
+		if message[0:5] == '/send':
+			send(message,uid)
 	if status == 1:
 		ignore(uid)
      
@@ -125,8 +127,9 @@ def set_status(message,uid):
     
 #自动回复    
 def ignore(uid):
-	msg = 'Cc不在，我是机器人，你可以更改status码来调教我'
-	requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid, msg))
+	msg = ['老爹古董店，有事请留言',' Cc不在，他在为建设共产主义而努力学习','Cc不在，他又去摸鱼了']
+	rand = random.randint(0,len(msg)-1)
+	requests.get(url=uurl+'/send_private_msg?user_id={0}&message={1}'.format(uid, msg[rand]))
     
 #自动反馈    
 def feedback(message,uid,gid):
@@ -170,3 +173,18 @@ def setu(message,gid,uid):
 	else:
 		requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid,  r'[CQ:image,' + r'file=' + str(menu2) + r']'))
 		
+#指定回复
+def send(msg,uid):
+	msgl = list(str(msg[6:]))
+	count = 0
+	s_rcv_uid = ""
+	for i in msgl:
+		if str(i) == " ":
+			break
+		s_rcv_uid += str(i)
+		count += 1
+	rcv_uid = int(s_rcv_uid)
+	sends = msg[count+6:]
+	requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid, "已发送"))
+	requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(rcv_uid , sends+'\n from.'+str(uid) ))
+	
