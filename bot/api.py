@@ -186,5 +186,5 @@ def send(msg,uid):
 	rcv_uid = int(s_rcv_uid)
 	sends = msg[count+6:]
 	requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid, "已发送"))
-	requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(rcv_uid , sends+'\n from.'+str(uid) ))
+	requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(rcv_uid , sends+'\n from.'+str(uid) ))
 	
