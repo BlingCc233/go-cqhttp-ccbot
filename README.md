@@ -13,7 +13,7 @@
 - 也可按需修改`/bot/api.py`中的管理群，欢迎语，<a href="#涩图">涩图API</a>等。（不改也能直接使用）
 - 违禁词可以添加至`/bot/mingan_words.txt`中
 - 需要用到的库(pip(3) install)：flask 和 requests
-- 先运行[/go-cqhttp](/gohttp "机器人本体")目录下的./go-cqhttp
+- 先运行[/go-cqhttp](..../gohttp "机器人本体")目录下的./go-cqhttp
 - 再运行[/bot](/bot "程序本体")目录下的main.py
 ## 功能
 - 参考`/bot/api.py`的注释
