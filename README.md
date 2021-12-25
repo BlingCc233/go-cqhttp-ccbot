@@ -13,8 +13,8 @@
 - 也可按需修改`/bot/api.py`中的管理群，欢迎语，<a href="#涩图">涩图API</a>等。（不改也能直接使用）
 - 违禁词可以添加至`/bot/mingan_words.txt`中
 - 需要用到的库(pip(3) install)：flask 和 requests
-- 先运行/gohttp目录下的./go-cqhttp/ ///  
-- 再运行/bot目录下的main.py
+- 先运行[/gohttp](/gohttp "机器人本体")目录下的./go-cqhttp
+- 再运行[/bot](/bot "程序本体")目录下的main.py
 ## 功能
 - 参考`/bot/api.py`的注释
 
@@ -29,7 +29,7 @@
 | 指定发送     | /send +接受者账号 +内容     |
 
 ## 施工中的功能
-- [ ] 狼人杀🐺
+- [ ] [狼人杀🐺](https://github.com/HUZHU-TEAM/Wolf-game "狼人杀")
 - [ ] 打断+1复读
 - [ ] QRcode二维码生成
 - [ ] 识别群图片二维码，并撤回
