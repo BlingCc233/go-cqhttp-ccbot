@@ -11,7 +11,7 @@
 
   <p align="center">
   <a href="https://github.com/BlingCc233/go-cqhttp-ccbot/releases">
-    <img src="https://img.shields.io/github/v/release/BlingCc233/go-cqhttp-ccbot?color=blueviolet&include_prereleases" alt="release">
+    <img src="https://img.shields.io/github/v/release/BlingCc233/go-cqhttp-ccbot?color=blueviolet&include_prereleases&style=for-the-badge" alt="release">
   </a>
 </p>
 
