@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://blingcc233.github.io/">
-    <img src="https://raw.githubusercontent.com/BlingCc233/go-cqhttp-ccbot/main/CCko.png" width="300" height="300" alt="Cc-bot">
+    <img src="https://raw.githubusercontent.com/BlingCc233/go-cqhttp-ccbot/main/sketch1632409715023.png" width="300" height="300" alt="Cc-bot">
   </a>
 </p>
 
