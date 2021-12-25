@@ -147,7 +147,7 @@ def anti_recall(msgid, uid ,gid ,stid):
 		msg = requests.get(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
 		msg1 = json.loads(msg.text)
 		msg2 = msg1.get("data").get("message")
-		if gid != None:
+		if gid != None and gid in groups:
 			requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + ' 撤回无效，原文为：\n' + str(msg2)))
 		else:
 			requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(stid ,str(uid) + '\n' + str(msg2)))
