@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://blingcc233.github.io/">
+    <img src="https://raw.githubusercontent.com/BlingCc233/go-cqhttp-ccbot/main/FG90kDBaIAYNzir.jpg" width="200" height="200" alt="Cc-bot">
+  </a>
+</p>
+
+<div align="center">
+
 # go-cqhttp-ccbot
 > 🤖一个基于<a href="https://github.com/Mrs4s/go-cqhttp/releases">go-cqhttp</a>和Python的开箱即用的机器人
 <p align="center">
@@ -7,7 +15,9 @@
 </p>
 
 ## 声明
-- 一切开发旨在学习，请勿用于非法用途
+一切开发旨在学习，请勿用于非法用途
+</div>
+
 ## 启动
 - 使用时仅需修改`/go-cqhttp/config.yml`中的账号密码，以及`/bot/main.py`与`/bot/api.py`中的高级管理员账号(请自行参考注释)
 - 也可按需修改`/bot/api.py`中的管理群，欢迎语，<a href="#涩图">涩图API</a>等。（不改也能直接使用）
