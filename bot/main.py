@@ -41,6 +41,11 @@ def post_data():
 		stid = superid
 		msgid = _get('msgid')
 		api.anti_recall(msgid ,uid, None, stid)
+		
+	if _get('ntc_tp')=='group_increase':#加群欢迎
+		uid = request.get_json.get('guid')
+		gid = request.get_json.get('gid')
+		api.gr_increase(gid,uid)
     	
 	return 'OK'
 

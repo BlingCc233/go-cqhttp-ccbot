@@ -188,3 +188,8 @@ def send(msg,uid):
 	requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid, "已发送"))
 	requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(rcv_uid , sends+'\n from.'+str(uid) ))
 	
+#加群欢迎(验证)
+def gr_increase(gid,uid):
+	if gid in groups:
+		msg = "\n欢迎入群，不许爆粗口哦。"
+		requests.get(url=uurl + '/send_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + msg))
