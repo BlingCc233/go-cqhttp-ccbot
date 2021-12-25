@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.pixiv.net/artworks/93066887">
-    <img src="https://raw.githubusercontent.com/BlingCc233/go-cqhttp-ccbot/main/CCko.png" width="200" height="200" alt="Cc-bot">
+    <img src="https://raw.githubusercontent.com/BlingCc233/go-cqhttp-ccbot/main/OtoAi.png" width="200" height="200" alt="Cc-bot">
   </a>
 </p>
 
