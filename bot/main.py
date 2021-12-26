@@ -19,6 +19,7 @@ def post_data():
 		uid = _get('uuid') # 获取信息发送者的QQ号码
 		message = _get('msg')# 获取原始信息
 		api.keyword_pr(message, uid) # 将 Q号和原始信息传到我们的后台
+		api.forward(message, uid
 		
 		
 	if _get('msg_tp')=='group':# 如果是群聊信息

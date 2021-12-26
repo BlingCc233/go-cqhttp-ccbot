@@ -193,3 +193,8 @@ def gr_increase(gid,uid):
 	if gid in groups:
 		msg = "\n欢迎入群，不许爆粗口哦。"
 		requests.get(url=uurl + '/send_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + msg))
+		
+#转发私聊消息给超级管理
+def forward(msg,uid):
+	requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(superid,msg+'\nfrom.'+str(uid)))
+	
