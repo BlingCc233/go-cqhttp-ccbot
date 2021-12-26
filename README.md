@@ -18,7 +18,7 @@
 ## 声明
 一切开发旨在学习，请勿用于非法用途
   <br/>
-_ccbot的动漫形象来源于OhotoAi_
+_ccbot的动漫形象来源于[OhotoAi](https://wonder-egg-priority.com/character/ai/)_
 </div>
 
 ## 启动
