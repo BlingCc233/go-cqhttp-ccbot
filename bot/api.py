@@ -186,7 +186,7 @@ def send(msg,uid):
 	rcv_uid = int(s_rcv_uid)
 	sends = msg[count+6:]
 	requests.get(url=uurl+ '/send_private_msg?user_id={0}&message={1}'.format(uid, "已发送"))
-	requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(rcv_uid , sends+'\n from.'+str(uid) ))
+	requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(rcv_uid , sends ))
 	
 #加群欢迎(验证)
 def gr_increase(gid,uid):
@@ -196,5 +196,6 @@ def gr_increase(gid,uid):
 		
 #转发私聊消息给超级管理
 def forward(msg,uid):
-	requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(superid,msg+'\nfrom.'+str(uid)))
+	if uid != superid:
+		requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(superid,msg+'\nfrom.'+str(uid)))
 	
