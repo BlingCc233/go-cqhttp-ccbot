@@ -40,6 +40,7 @@ _ccbot的动漫形象来源于[OhotoAi](https://wonder-egg-priority.com/characte
 | 反馈        | 发送/feedback + XXX 提交bug |
 | 自动回复     | 管理员私聊/status 1/0 开/关  |
 | 指定发送     | /send +接受者账号 +内容     |
+| 闪照恢复     |                           |
 
 ## 施工中的功能
 - [ ] [狼人杀🐺](https://github.com/HUZHU-TEAM/Wolf-game "狼人杀")
@@ -48,6 +49,7 @@ _ccbot的动漫形象来源于[OhotoAi](https://wonder-egg-priority.com/characte
 - [ ] 识别群图片二维码，并撤回
 - [X] 进群欢迎 ~~验证~~
 - [ ] 群禁言
+- [X] 防闪照
 - [X] 消息转发
 - [X] ~~超级管理员~~指定对象发送信息
 ## 涩图
