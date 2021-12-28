@@ -198,4 +198,15 @@ def gr_increase(gid,uid):
 def forward(msg,uid):
 	if uid != superid:
 		requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(superid,msg+'\nfrom.'+str(uid)))
+		
+#闪照
+def flash(msg,uid,msgid):
+	if r'type=flash' in msg:
+		msg1 = requests.get(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
+		msg2 = json.loads(msg1.text)
+		msg3 = msg2.get("data").get("message")
+		msg4 = str(msg3)
+		msg5 = msg4[:-12] + r']'
+		requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(msg5)))
+		
 	
