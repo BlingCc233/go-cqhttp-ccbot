@@ -13,7 +13,8 @@ anti_status = 1
 #超级管理员账号，请修改为自己的
 superid = 2415364721
 
-def keyword_pr(message, uid):
+def keyword_pr(message, uid, msgid):
+	flash(message, uid, None, msgid)
 	if message[0:7] == '/status' or message[0:12] == '/anti_recall':
 		set_status(message,uid)
 	if status == 0:
@@ -46,7 +47,8 @@ while line :
 #管理群,请添加自己的
 groups = [697904286,701436956,877201026]
 
-def keyword_gr(message, drawback_msg, uid, gid):
+def keyword_gr(message, msgid, uid, gid):
+	flash(message, uid, gid, msgid)
 	if message == '/help':
 		help(uid,gid)
 	if message[0:2] == '复读':
@@ -60,7 +62,7 @@ def keyword_gr(message, drawback_msg, uid, gid):
 	if gid in groups:
 		for ban in bans:
 			if ban in message:
-				drawback(drawback_msg,uid,gid)
+				drawback(msgid,uid,gid)
 
 
 #上报地址
@@ -199,14 +201,18 @@ def forward(msg,uid):
 	if uid != superid:
 		requests.get(url=uurl+ '/send_msg?user_id={0}&message={1}'.format(superid,msg+'\nfrom.'+str(uid)))
 		
-#闪照
-def flash(msg,uid,msgid):
+#防闪照
+def flash(msg,uid,gid,msgid):
 	if r'type=flash' in msg:
 		msg1 = requests.get(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
 		msg2 = json.loads(msg1.text)
 		msg3 = msg2.get("data").get("message")
 		msg4 = str(msg3)
-		msg5 = msg4[:-12] + r']'
-		requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(msg5)))
+		if gid != None and gid in groups:
+			msg5 = msg4[:-22] + r']'
+			requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,'+ r'qq='+str(uid)+r']' + ' 让我康康:\n' +str(msg5)))
+		else:
+			msg5 = msg4[:-12] + r']'
+			requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(msg5)))
 		
 	
