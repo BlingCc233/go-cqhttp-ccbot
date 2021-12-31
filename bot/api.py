@@ -209,8 +209,20 @@ def flash(msg,uid,gid,msgid):
 		msg3 = msg2.get("data").get("message")
 		msg4 = str(msg3)
 		if gid != None and gid in groups:
-			msg5 = msg4[:-22] + r']'
-			requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,'+ r'qq='+str(uid)+r']' + ' 让我康康:\n' +str(msg5)))
+			msg5 = msg4[:-28]
+			menu3 = list(str(msg5))
+			menu4 = menu3[::-1]
+			menu5 = []
+			i = 0
+			while menu4[i] != "=":
+				menu5.append(menu4[i])
+				i+=1
+			menu6 = menu5[::-1]
+			menu2 = ""
+			for o in menu6:
+				menu2 += str(o)
+			menu2 += r"term=2"
+			requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,'+ r'qq='+str(uid)+r']' + ' 让我康康:\n' + r'[CQ:image,file=' +str(menu2) + r']'))
 		else:
 			msg5 = msg4[:-12] + r']'
 			requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(msg5)))
