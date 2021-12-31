@@ -41,6 +41,7 @@ _ccbot的动漫形象来源于[OhotoAi](https://wonder-egg-priority.com/characte
 | 自动回复     | 管理员私聊/status 1/0 开/关  |
 | 指定发送     | /send +接受者账号 +内容     |
 | 闪照恢复     |                           |
+| 定时早晚安    |                           |
 
 ## 施工中的功能
 - [ ] [狼人杀🐺](https://github.com/HUZHU-TEAM/Wolf-game "狼人杀")
