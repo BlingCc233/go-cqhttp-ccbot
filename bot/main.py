@@ -18,9 +18,9 @@ def post_data():
 	if _get('msg_tp')=='private': # 如果是私聊信息		
 		uid = _get('uuid') # 获取信息发送者的QQ号码
 		message = _get('msg')# 获取原始信息
-		msgid = _get('msgid')
+		msgid = _get('msgid')#获取消息ID
 		api.keyword_pr(message, uid, msgid) # 将 Q号和原始信息传到我们的后台
-		api.forward(message, uid)
+		api.forward(message, uid)#私聊消息转发给管理员
 		
 		
 	if _get('msg_tp')=='group':# 如果是群聊信息
@@ -48,6 +48,9 @@ def post_data():
 		uid = _get('guid')
 		gid = _get('gid')
 		api.gr_increase(gid,uid)
+		
+	if str(time.strftime('%H:%M%:%S')) in '08:00:00' or str(time.strftime('%H:%M%:%S')) in '23:00:00':#定时消息
+		api.dingshi()
     	
 	return 'OK'
 

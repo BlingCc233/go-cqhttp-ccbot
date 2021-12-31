@@ -92,13 +92,13 @@ def hello(uid):
 #菜单？    
 def help(uid,gid):
 	msg = '我是Cc的开源机器人，暂时冇有任何功能：\n'
-	msg += '1.私聊"在？"可以续火\n'
-	msg += '2.在特定群可以当管理并撤回违禁词\n'
-	msg += '3.发送"复读XXX"可以复读\n'
-	msg += '4.不论是群聊还是私聊，你撤回的我都能看见(管理员撤回的不算)\n'
-	msg += '5.发送"/feedback XXX"可以反馈bug，我会尽早修复\n'
-	msg += '6.发送"/opensource"可以查看源码\n'
-	msg += '7.发送"/setu"可以获取嘿嘿嘿'
+	msg += '1./setu \n'
+	msg += '2./feedback \n'
+	msg += '3.复读 XXX \n'
+	msg += '4.防撤回 \n'
+	msg += '5.防闪照 \n'
+	msg += '6./opensource \n'
+	msg += '7.定时发消息'
 	if gid != None:
 		requests.get(url=uurl+'/send_group_msg?group_id={0}&message={1}'.format(gid,msg))
 	else:
@@ -215,4 +215,13 @@ def flash(msg,uid,gid,msgid):
 			msg5 = msg4[:-12] + r']'
 			requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(msg5)))
 		
+#定时早晚安
+def dingshi():
+	uuid = [230176082,1324607806,1325645228]#请添加自己的早晚安人
+	if str(time.strftime('%H:%M')) in '08:00':
+		for uid in uuid:
+			requests.get(url= uurl +'/send_msg?user_id={0}&message={1}'.format(uid,r"早安！"))
+	if str(time.strftime('%H:%M')) in '23:00':
+		for uid in uuid:
+			requests.get(url= uurl +'/send_msg?user_id={0}&message={1}'.format(uid,r"晚安！"))
 	
