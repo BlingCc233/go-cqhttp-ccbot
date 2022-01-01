@@ -12,6 +12,15 @@ status = 0
 anti_status = 1
 #超级管理员账号，请修改为自己的
 superid = 2415364721
+#历史消息
+class History(object):
+	def __init__(self,msg=[],uid=[],gid=[]):
+		self.msg = msg
+		self.uid = uid
+		self.gid = gid
+his_msg = History()
+his_uid = History()
+his_gid = History()
 
 def keyword_pr(message, uid, msgid):
 	flash(message, uid, None, msgid)
@@ -229,11 +238,11 @@ def flash(msg,uid,gid,msgid):
 		
 #定时早晚安
 def dingshi():
-	uuid = [230176082,1324607806,1325645228]#请添加自己的早晚安人
-	if str(time.strftime('%H:%M')) in '08:00':
+	uuid = [230176082,1324607806,1325645228,1342171891]#请添加自己的早晚安人
+	if str(time.strftime('%H:%M')) == '08:00':
 		for uid in uuid:
 			requests.get(url= uurl +'/send_msg?user_id={0}&message={1}'.format(uid,r"早安！"))
-	if str(time.strftime('%H:%M')) in '23:00':
+	if str(time.strftime('%H:%M')) == '23:00':
 		for uid in uuid:
 			requests.get(url= uurl +'/send_msg?user_id={0}&message={1}'.format(uid,r"晚安！"))
 	
