@@ -24,6 +24,7 @@ _ccbot的动漫形象来源于[OhotoAi](https://wonder-egg-priority.com/characte
 ## 启动
 - 使用时仅需修改`/go-cqhttp/config.yml`中的账号密码，以及`/bot/main.py`与`/bot/api.py`中的高级管理员账号(请自行参考注释)
 - 也可按需修改`/bot/api.py`中的管理群，欢迎语，<a href="#涩图">涩图API</a>等。（不改也能直接使用）
+- 不需要的功能请直接用`'''`多行注释掉
 - 违禁词可以添加至`/bot/mingan_words.txt`中
 - 需要用到的库(pip(3) install)：flask 和 requests
 - 先运行/go-cqhttp目录下的./go-cqhttp
