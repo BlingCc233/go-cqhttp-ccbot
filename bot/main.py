@@ -49,8 +49,7 @@ def post_data():
 		gid = _get('gid')
 		api.gr_increase(gid,uid)
 		
-	if str(time.strftime('%H:%M')) == '08:00' or str(time.strftime('%H:%M')) == '23:00':#定时消息
-		api.dingshi()
+	
     	
 	return 'OK'
 

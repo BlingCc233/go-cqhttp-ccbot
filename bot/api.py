@@ -12,20 +12,13 @@ status = 0
 anti_status = 1
 #超级管理员账号，请修改为自己的
 superid = 2415364721
-#历史消息
-class History(object):
-	def __init__(self,msg=[],uid=[],gid=[]):
-		self.msg = msg
-		self.uid = uid
-		self.gid = gid
-his_msg = History()
-his_uid = History()
-his_gid = History()
+
 
 def keyword_pr(message, uid, msgid):
-	flash(message, uid, None, msgid)
 	if message[0:7] == '/status' or message[0:12] == '/anti_recall':
 		set_status(message,uid)
+	if 'type=flash' in message:
+		flash(message, uid, None, msgid)
 	if status == 0:
 		if message[0:11] == '/opensource': 
 			open_source(None,uid)
@@ -81,9 +74,9 @@ uurl = 'http://127.0.0.1:22333'
 #源码
 def open_source(gid,uid):
 	if gid != None:
-		requests.get(url=uurl+ '/send_group_msg?group_id={0}&message=https://github.com/BlingCc233/go-cqhttp-ccbot'.format(gid))
+		requests.get(url=uurl+ '/send_group_msg?group_id={0}&message=https://gitee.com/blingcc/go-cqhttp-ccbot'.format(gid))
 	else:
-		requests.get(url=uurl+'/send_private_msg?user_id={0}&message=https://github.com/BlingCc233/go-cqhttp-ccbot'.format(uid))
+		requests.get(url=uurl+'/send_private_msg?user_id={0}&message=https://gitee.com/blingcc/go-cqhttp-ccbot'.format(uid))
 
 #复读机
 def fudu_gr(message,uid,gid):
@@ -202,7 +195,7 @@ def send(msg,uid):
 #加群欢迎(验证)
 def gr_increase(gid,uid):
 	if gid in groups:
-		msg = "\n欢迎入群，不许爆粗口哦。"
+		msg = "\n欢迎入群，不许爆粗口、不许打广告哦。"
 		requests.get(url=uurl + '/send_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,' r'qq=' + str(uid) + r']' + msg))
 		
 #转发私聊消息给超级管理
@@ -212,37 +205,38 @@ def forward(msg,uid):
 		
 #防闪照
 def flash(msg,uid,gid,msgid):
-	if r'type=flash' in msg:
-		msg1 = requests.get(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
-		msg2 = json.loads(msg1.text)
-		msg3 = msg2.get("data").get("message")
-		msg4 = str(msg3)
-		if gid != None and gid in groups:
-			msg5 = msg4[:-28]
-			menu3 = list(str(msg5))
-			menu4 = menu3[::-1]
-			menu5 = []
-			i = 0
-			while menu4[i] != "=":
-				menu5.append(menu4[i])
-				i+=1
-			menu6 = menu5[::-1]
-			menu2 = ""
-			for o in menu6:
-				menu2 += str(o)
-			menu2 += r"term=2"
-			requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,'+ r'qq='+str(uid)+r']' + ' 让我康康:\n' + r'[CQ:image,file=' +str(menu2) + r']'))
-		else:
-			msg5 = msg4[:-12] + r']'
-			requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(msg5)))
+	msg1 = requests.get(url=uurl+ '/get_msg?message_id={0}'.format(msgid))
+	msg2 = json.loads(msg1.text)
+	msg3 = msg2.get("data").get("message")
+	msg4 = str(msg3)
+	if gid != None and gid in groups:
+		msg5 = msg4[:-28]
+		menu3 = list(str(msg5))
+		menu4 = menu3[::-1]
+		menu5 = []
+		i = 0
+		while menu4[i] != "=":
+			menu5.append(menu4[i])
+			i+=1
+		menu6 = menu5[::-1]
+		menu2 = ""
+		for o in menu6:
+			menu2 += str(o)
+		menu2 += r"term=2"
+		requests.get(url=uurl +'/send_group_msg?group_id={0}&message={1}'.format(gid, r'[CQ:at,'+ r'qq='+str(uid)+r']' + ' 让我康康:\n' + r'[CQ:image,file=' +str(menu2) + r']'))
+	else:
+		msg5 = msg4[:-12]
+		menu3 = list(str(msg5))
+		menu4 = menu3[::-1]
+		menu5 = []
+		i = 0
+		while menu4[i] != "=":
+			menu5.append(menu4[i])
+			i+=1
+		menu6 = menu5[::-1]
+		menu2 = ""
+		for o in menu6:
+			menu2 += str(o)
+		msg5 = msg4[:-12] + r']'
+		requests.get(url=uurl +'/send_private_msg?user_id={0}&message={1}'.format(superid ,str(uid) + '\n' + str(menu2)))
 		
-#定时早晚安
-def dingshi():
-	uuid = [230176082,1324607806,1325645228,1342171891]#请添加自己的早晚安人
-	if str(time.strftime('%H:%M')) == '08:00':
-		for uid in uuid:
-			requests.get(url= uurl +'/send_msg?user_id={0}&message={1}'.format(uid,r"早安！"))
-	if str(time.strftime('%H:%M')) == '23:00':
-		for uid in uuid:
-			requests.get(url= uurl +'/send_msg?user_id={0}&message={1}'.format(uid,r"晚安！"))
-	
